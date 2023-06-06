@@ -12,6 +12,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Categories'
+        verbose_name = 'Category'
 
 class Collection(models.Model):
     name = models.CharField(max_length=100)
@@ -20,6 +24,10 @@ class Collection(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Collections'
+        verbose_name = 'Collection'
     
 class Product(models.Model):
     name = models.CharField(max_length=255)
@@ -32,11 +40,19 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-class Promotions(models.Model):
+    class Meta:
+        verbose_name_plural = 'Products'
+        verbose_name = 'Product'
+    
+class Promotion(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255, null=True, blank=True)
-    discount = models.FloatField()
+    discount = models.IntegerField()
     products = models.ManyToManyField(Product)
 
     def __str__(self):
-        return self.description
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = 'Promotions'
+        verbose_name = 'Promotion'
