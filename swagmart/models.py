@@ -47,7 +47,7 @@ class Product(models.Model):
 class Promotion(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255, null=True, blank=True)
-    discount = models.IntegerField()
+    discount = models.FloatField()
     products = models.ManyToManyField(Product)
 
     def __str__(self):
