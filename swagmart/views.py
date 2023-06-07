@@ -9,6 +9,6 @@ def index(request):
     return HttpResponse("Server is up and running!")
 
 
-class CollectionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
+class CollectionViewSet(ListModelMixin, GenericViewSet):
     queryset = Collection.objects.all()
     serializer_class = CollectionSerializer
