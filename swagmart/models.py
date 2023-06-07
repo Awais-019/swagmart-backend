@@ -1,26 +1,17 @@
 from django.db import models
 
 # Create your models here.
-class Category(models.Model):
+
+class Collection(models.Model):
     AUDIENCE_CHOICES = [
-    ('men', 'Men'),
-    ('women', 'Women')
+        ('men', "Men"),
+        ('women', "Women")
     ]
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255, null=True, blank=True)
-    target_audience = models.CharField(max_length=255, choices=AUDIENCE_CHOICES)
-
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        verbose_name_plural = 'Categories'
-        verbose_name = 'Category'
-
-class Collection(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=255, null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    target_audience = models.CharField(max_length=5, choices=AUDIENCE_CHOICES)
+    featured_product = models.ForeignKey('Product', on_delete=models.CASCADE, 
+                                         null=True, blank=True, related_name='featured_product')
 
     def __str__(self):
         return self.name
